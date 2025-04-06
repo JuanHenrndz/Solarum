@@ -1,0 +1,45 @@
+<nav class="navbar navbar-expand-lg fixed-top">
+  <div class="container">
+    <a class="navbar-brand" routerLink="/">
+      Solarum
+    </a>
+    <button class="navbar-toggler" type="button" (click)="toggleNavbar()">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" [class.show]="isNavbarCollapsed">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Inicio</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/about" routerLinkActive="active">Nosotros</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/blog" routerLinkActive="active">Blog</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/contact" routerLinkActive="active">Contacto</a>
+        </li>
+
+        <!-- Usuario no autenticado -->
+        <li class="nav-item ms-lg-3" *ngIf="!authService.isAuthenticated()">
+          <a class="btn btn-outline-primary login-btn" routerLink="/login">
+            <i class="fas fa-user me-2"></i>Iniciar Sesión
+          </a>
+        </li>
+
+        <!-- Usuario autenticado -->
+        <li class="nav-item dropdown ms-lg-3" *ngIf="authService.isAuthenticated()">
+          <a class="nav-link dropdown-toggle user-menu" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <i class="fas fa-user-circle me-2"></i>{{ authService.currentUserValue?.name }}
+          </a>
+          <ul class="dropdown-menu dropdown-menu-end">
+            <li><a class="dropdown-item" routerLink="/profile">Mi Perfil</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item text-danger" href="javascript:void(0)" (click)="logout()">Cerrar Sesión</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="200" height="50" viewBox="0 0 200 50" xmlns="http://www.w3.org/2000/svg">
+  <!-- Panel solar -->
+  <g transform="translate(10, 5)">
+    <path d="M10 30L35 15L60 30L35 45Z" fill="#27ae60"/>
+    <path d="M13 29L35 16L57 29L35 42Z" fill="#2ecc71"/>
+
+    <!-- Sol -->
+    <circle cx="35" cy="12" r="6" fill="#f39c12"/>
+
+    <!-- Rayos del sol -->
+    <g stroke="#f39c12" stroke-width="2">
+      <line x1="35" y1="2" x2="35" y2="6"/>
+      <line x1="25" y1="12" x2="29" y2="12"/>
+      <line x1="41" y1="12" x2="45" y2="12"/>
+      <line x1="28" y1="5" x2="31" y2="8"/>
+      <line x1="42" y1="8" x2="39" y2="5"/>
+      <line x1="28" y1="19" x2="31" y2="16"/>
+      <line x1="42" y1="16" x2="39" y2="19"/>
+    </g>
+  </g>
+
+  <!-- Texto Solarum -->
+  <text x="80" y="35" font-family="Arial, sans-serif" font-size="24" font-weight="bold" fill="#2ecc71">
+    Solarum
+  </text>
+</svg>

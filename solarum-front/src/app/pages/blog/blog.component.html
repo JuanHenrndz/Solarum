@@ -1,0 +1,122 @@
+<div class="container py-5">
+  <div class="row">
+    <div class="col-lg-8 mx-auto text-center mb-5">
+      <h1 class="display-4 mb-4">Blog de Energía Solar</h1>
+      <p class="lead">Explora nuestros artículos sobre energía solar, sostenibilidad y tecnologías renovables.</p>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-lg-8">
+      <!-- Filtro actual -->
+      <div class="mb-4" *ngIf="currentTag">
+        <div class="d-flex align-items-center">
+          <span class="me-2">Filtrando por etiqueta:</span>
+          <span class="badge bg-primary me-2">{{ currentTag }}</span>
+          <button class="btn btn-outline-secondary btn-sm" (click)="clearFilters()">
+            <i class="fas fa-times me-1"></i> Limpiar filtro
+          </button>
+        </div>
+      </div>
+
+      <!-- Lista de artículos -->
+      <div class="row">
+        <div class="col-md-6 mb-4" *ngFor="let post of blogPosts">
+          <div class="card h-100">
+            <img [src]="post.image" class="card-img-top" [alt]="post.title">
+            <div class="card-body">
+              <div class="mb-2">
+                <span class="badge bg-primary me-2">{{ post.category }}</span>
+                <small class="text-muted">{{ post.date | date:'mediumDate' }}</small>
+              </div>
+              <h5 class="card-title">{{ post.title }}</h5>
+              <p class="card-text">{{ post.excerpt }}</p>
+              <a [routerLink]="['/blog', post.id]" class="btn btn-primary">Leer más</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Paginación -->
+      <nav aria-label="Page navigation" class="mt-4">
+        <ul class="pagination justify-content-center">
+          <li class="page-item" [class.disabled]="currentPage === 1">
+            <a class="page-link" (click)="changePage(currentPage - 1)">Anterior</a>
+          </li>
+          <li class="page-item" *ngFor="let page of pages" [class.active]="page === currentPage">
+            <a class="page-link" (click)="changePage(page)">{{ page }}</a>
+          </li>
+          <li class="page-item" [class.disabled]="currentPage === totalPages">
+            <a class="page-link" (click)="changePage(currentPage + 1)">Siguiente</a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+
+    <div class="col-lg-4">
+      <!-- Barra lateral -->
+      <div class="sidebar">
+        <!-- Búsqueda -->
+        <div class="card mb-4">
+          <div class="card-body">
+            <h5 class="card-title">Buscar</h5>
+            <div class="input-group">
+              <input type="text" class="form-control" [(ngModel)]="searchQuery" placeholder="Buscar artículos...">
+              <button class="btn btn-primary" (click)="search()">
+                <i class="fas fa-search"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Categorías -->
+        <div class="card mb-4">
+          <div class="card-body">
+            <h5 class="card-title">Categorías</h5>
+            <ul class="list-unstyled">
+              <li *ngFor="let category of categories">
+                <a href="#" (click)="filterByCategory(category.name); $event.preventDefault()" class="d-flex justify-content-between align-items-center mb-2">
+                  <span>{{ category.name }}</span>
+                  <span class="badge bg-primary rounded-pill">{{ category.count }}</span>
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Etiquetas -->
+        <div class="card mb-4">
+          <div class="card-body">
+            <h5 class="card-title">Etiquetas</h5>
+            <div class="d-flex flex-wrap gap-2">
+              <a *ngFor="let tag of tags"
+                 href="#"
+                 (click)="filterByTag(tag.name); $event.preventDefault()"
+                 class="badge bg-secondary text-decoration-none">
+                {{ tag.name }}
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Artículos populares -->
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">Artículos populares</h5>
+            <div class="list-group">
+              <a *ngFor="let post of popularPosts"
+                 [routerLink]="['/blog', post.id]"
+                 class="list-group-item list-group-item-action">
+                <div class="d-flex w-100 justify-content-between">
+                  <h6 class="mb-1">{{ post.title }}</h6>
+                  <small class="text-muted">{{ post.date | date:'shortDate' }}</small>
+                </div>
+                <small>{{ post.category }}</small>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

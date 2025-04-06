@@ -1,0 +1,119 @@
+<div class="container py-5">
+  <div class="row">
+    <div class="col-lg-8 mx-auto">
+      <div class="card">
+        <div class="card-body">
+          <h2 class="text-center mb-4">Crear Nuevo Artículo</h2>
+
+          <!-- Mensaje de error -->
+          <div class="alert alert-danger" *ngIf="errorMessage">
+            {{ errorMessage }}
+          </div>
+
+          <form (ngSubmit)="onSubmit()">
+            <!-- Título -->
+            <div class="mb-3">
+              <label for="title" class="form-label">Título</label>
+              <input
+                type="text"
+                class="form-control"
+                id="title"
+                [(ngModel)]="article.title"
+                name="title"
+                required>
+            </div>
+
+            <!-- Resumen -->
+            <div class="mb-3">
+              <label for="excerpt" class="form-label">Resumen</label>
+              <textarea
+                class="form-control"
+                id="excerpt"
+                rows="3"
+                [(ngModel)]="article.excerpt"
+                name="excerpt"
+                required></textarea>
+            </div>
+
+            <!-- Contenido -->
+            <div class="mb-3">
+              <label for="content" class="form-label">Contenido</label>
+              <textarea
+                class="form-control"
+                id="content"
+                rows="10"
+                [(ngModel)]="article.content"
+                name="content"
+                required></textarea>
+            </div>
+
+            <!-- Categoría -->
+            <div class="mb-3">
+              <label for="category" class="form-label">Categoría</label>
+              <select
+                class="form-select"
+                id="category"
+                [(ngModel)]="article.category"
+                name="category"
+                required>
+                <option value="">Selecciona una categoría</option>
+                <option *ngFor="let category of categories" [value]="category">
+                  {{ category }}
+                </option>
+              </select>
+            </div>
+
+            <!-- URL de la imagen -->
+            <div class="mb-3">
+              <label for="image" class="form-label">URL de la imagen</label>
+              <input
+                type="url"
+                class="form-control"
+                id="image"
+                [(ngModel)]="article.image"
+                name="image"
+                placeholder="https://ejemplo.com/imagen.jpg">
+            </div>
+
+            <!-- Etiquetas -->
+            <div class="mb-3">
+              <label class="form-label">Etiquetas</label>
+              <div class="input-group mb-2">
+                <input
+                  type="text"
+                  class="form-control"
+                  [(ngModel)]="newTag"
+                  name="newTag"
+                  placeholder="Agregar etiqueta">
+                <button
+                  class="btn btn-outline-primary"
+                  type="button"
+                  (click)="addTag()">
+                  Agregar
+                </button>
+              </div>
+              <div class="tags-container">
+                <span
+                  class="badge bg-primary me-2 mb-2"
+                  *ngFor="let tag of article.tags">
+                  {{ tag }}
+                  <i class="fas fa-times ms-2" (click)="removeTag(tag)"></i>
+                </span>
+              </div>
+            </div>
+
+            <!-- Botón de envío -->
+            <div class="d-grid">
+              <button
+                type="submit"
+                class="btn btn-primary"
+                [disabled]="isSubmitting">
+                {{ isSubmitting ? 'Publicando...' : 'Publicar Artículo' }}
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

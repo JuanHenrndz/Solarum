@@ -1,0 +1,60 @@
+<div class="container py-5">
+  <div class="row">
+    <div class="col-lg-8 mx-auto text-center mb-5">
+      <h1 class="display-4 mb-4">Contáctanos</h1>
+      <p class="lead">¿Tienes preguntas sobre energía solar o sostenibilidad? ¡Estamos aquí para ayudarte!</p>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-lg-8 mx-auto">
+      <div class="card">
+        <div class="card-body">
+          <form (ngSubmit)="onSubmit()" #contactForm="ngForm">
+            <div class="mb-3">
+              <label for="name" class="form-label">Nombre</label>
+              <input type="text" class="form-control" id="name" name="name" [(ngModel)]="contactData.name" required>
+            </div>
+            <div class="mb-3">
+              <label for="email" class="form-label">Correo electrónico</label>
+              <input type="email" class="form-control" id="email" name="email" [(ngModel)]="contactData.email" required email>
+            </div>
+            <div class="mb-3">
+              <label for="subject" class="form-label">Asunto</label>
+              <input type="text" class="form-control" id="subject" name="subject" [(ngModel)]="contactData.subject" required>
+            </div>
+            <div class="mb-3">
+              <label for="message" class="form-label">Mensaje</label>
+              <textarea class="form-control" id="message" name="message" rows="5" [(ngModel)]="contactData.message" required></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary" [disabled]="!contactForm.form.valid">Enviar mensaje</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row mt-5">
+    <div class="col-md-4">
+      <div class="contact-info text-center">
+        <i class="fas fa-map-marker-alt fa-2x text-primary mb-3"></i>
+        <h4>Ubicación</h4>
+        <p>Calle Principal #123<br>Ciudad Solar, CP 12345</p>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="contact-info text-center">
+        <i class="fas fa-envelope fa-2x text-primary mb-3"></i>
+        <h4>Email</h4>
+        <p>info&#64;solarum.com<br>soporte&#64;solarum.com</p>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="contact-info text-center">
+        <i class="fas fa-phone fa-2x text-primary mb-3"></i>
+        <h4>Teléfono</h4>
+        <p>+1 234 567 8900<br>+1 234 567 8901</p>
+      </div>
+    </div>
+  </div>
+</div>

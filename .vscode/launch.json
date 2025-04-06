@@ -1,0 +1,14 @@
+{
+  "configurations": [
+    {
+      "type": "java",
+      "name": "Spring Boot-SolarumApplication<solarum>",
+      "request": "launch",
+      "cwd": "${workspaceFolder}",
+      "mainClass": "com.solarum.SolarumApplication",
+      "projectName": "solarum",
+      "args": "",
+      "envFile": "${workspaceFolder}/.env"
+    }
+  ]
+}
